@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { search } from './search';
+import { linearSearch, binarySearch } from './search';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.output = 'something';
+        this.linearOutput = 'something';
+        this.binaryOutput = 'something';
     }
 
     linearSubmit(e) {
         e.preventDefault();
+        console.log('linearSubmit called');
+        console.log(e.target.search.value);
+        //console.log(e.target.linear.value);
+        this.linearOutput = linearSearch(e.target.linear.value, e.target.search.value);
         // console.log('linear search');
     }
 
-    findInput(param) {
-        this.output = search(param);
+    binarySubmit(e) {
+        e.preventDefault();
+        this.binaryOutput = binarySearch(e.value);
     }
 
     render() {
@@ -32,9 +37,11 @@ class App extends Component {
             <main>
                 <form onSubmit={e => this.linearSubmit(e)}>
                     <label>Linear Search:</label>
-                    <input type="text" />
+                    <input type="text" name="linear"/>
+                    <label>Search Value:</label>
+                    <input type="text" name="search"/>
                 </form>
-                <form onSubmit={() => console.log('binary search')}>
+                <form onSubmit={e => this.binarySubmit(e)}>
                     <label>Binary Search:</label>
                     <input type="text" />
                 </form>
