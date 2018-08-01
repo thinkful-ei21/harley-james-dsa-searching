@@ -8,14 +8,14 @@ class App extends Component {
         this.state = {
             output: 'Search for a value in the data using Linear or Binary Search',
             query: null
-        }
+        };
     }
 
     grabText(e) {
         this.setState({
-            ...this.state, 
+            ...this.state,
             query: e.target.value
-        })
+        });
     }
 
     linearSubmit(e) {
@@ -25,7 +25,7 @@ class App extends Component {
             this.setState({
                 ...this.state,
                 output: linearSearch(this.state.query)
-            })
+            });
         }
     }
 
@@ -35,7 +35,7 @@ class App extends Component {
             this.setState({
                 ...this.state,
                 output: binarySearch(this.state.query)
-            })
+            });
         }
     }
 
