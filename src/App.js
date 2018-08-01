@@ -5,19 +5,38 @@ import { linearSearch, binarySearch } from './search';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.linearOutput = 'something';
-        this.binaryOutput = 'something';
+        this.state = {
+            output: 'Search for a value in the data using Linear or Binary Search',
+            query: null
+        }
+    }
+
+    grabText(e) {
+        this.setState({
+            ...this.state, 
+            query: e.target.value
+        })
     }
 
     linearSubmit(e) {
         e.preventDefault();
-        console.log(e);
-        // this.linearOutput = linearSearch(e.target.search.value);
+        //console.log(e);
+        if (this.state.query !== null) {
+            this.setState({
+                ...this.state,
+                output: linearSearch(this.state.query)
+            })
+        }
     }
 
     binarySubmit(e) {
         e.preventDefault();
-        this.binaryOutput = binarySearch(e.value);
+        if (this.state.query !== null) {
+            this.setState({
+                ...this.state,
+                output: binarySearch(this.state.query)
+            })
+        }
     }
 
     render() {
@@ -35,10 +54,11 @@ class App extends Component {
                 </header>
 
                 <div>
-                    <input type="text" name="search" />
+                    <input type="text" onChange={e => this.grabText(e)} />
                     <button onClick={e => this.linearSubmit(e)}>Linear Search</button>
                     <button onClick={e => this.binarySubmit(e)}>Binary Search</button>
                 </div>
+                <span>{this.state.output}</span>
             </div>
         );
     }

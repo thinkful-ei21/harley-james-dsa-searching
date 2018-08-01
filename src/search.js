@@ -3,7 +3,7 @@ let data =
 data = data.split(' ');
 
 function indexOf(array, value) {
-    console.log('indexOf reached');
+    //console.log('indexOf reached');
     for (let i = 0; i < array.length; i++) {
         if (array[i] === value) {
             return i;
@@ -13,7 +13,11 @@ function indexOf(array, value) {
 }
 
 export const linearSearch = value => {
-    return indexOf(data, value);
+    const found = indexOf(data, value);
+    if (found === -1) {
+        return `The value wasn't in the data, so the search had to check ${data.length} items.`;
+    }
+    return `The value is at index ${found}, meaning the search had to check ${found} items`;
 };
 
 export const binarySearch = input => {};
